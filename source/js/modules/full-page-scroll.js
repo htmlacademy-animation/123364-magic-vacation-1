@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import { initPageAnimation, destroyPageAnimation } from "./pageAnimation";
 
 export default class FullPageScroll {
   constructor() {
@@ -30,6 +31,7 @@ export default class FullPageScroll {
 
   onUrlHashChenged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    destroyPageAnimation(this.activeScreen);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
   }
@@ -38,6 +40,7 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
+    initPageAnimation(this.activeScreen);
   }
 
   changeVisibilityDisplay() {
