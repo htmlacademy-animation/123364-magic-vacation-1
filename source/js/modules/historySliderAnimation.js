@@ -7,7 +7,7 @@ const setSecondBlockAnimation = () => {
   });
 };
 
-export const initSlideAnimation = () => {
+const init = () => {
   firstTextBlock = document.querySelector('.swiper-slide-active .slider__item-text');
   secondTextBlock = document.querySelector('.swiper-slide-next .slider__item-text');
 
@@ -20,12 +20,21 @@ export const initSlideAnimation = () => {
   }
 }
 
-export const destroySlideAnimation = () => {
-  firstTextBlock && firstTextBlock.removeEventListener('transitionend', setSecondBlockAnimation);
+const destroy = () => {
+  if (firstTextBlock) {
+    firstTextBlock.removeEventListener('transitionend', setSecondBlockAnimation);
+    firstTextBlock.classList.remove('active');
+  }
 
-  firstTextBlock && firstTextBlock.classList.remove('active');
-  secondTextBlock && secondTextBlock.classList.remove('active');
+  if (secondTextBlock) {
+    secondTextBlock.classList.remove('active');
+  }
 
   firstTextBlock = null;
   secondTextBlock = null;
+};
+
+export default {
+  init,
+  destroy,
 };

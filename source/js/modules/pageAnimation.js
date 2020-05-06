@@ -1,72 +1,83 @@
-import { initSlideAnimation, destroySlideAnimation } from "./historySliderAnimation";
+import historySliderAnimation from "./historySliderAnimation";
 
-const introMessage = document.querySelector('.intro__message');
-const gameInput = document.querySelector('.form__field');
-const MAIN = 'main';
-const HISTORY = 'history';
-const AWARD = 'award';
-const RULES = 'rules';
-const GAME = 'game';
-const screens = [MAIN, HISTORY, AWARD, RULES, GAME];
-
-/**
- * @param {Number} activeScreen
- */
-export const initPageAnimation = (activeScreen) => {
-  switch (screens[activeScreen]) {
-    case MAIN: {
-      requestAnimationFrame(() => {
-        introMessage.classList.add('active');
-      });
-
-      break;
+export default class PageAnimation {
+  constructor() {
+    this.screen = {
+      main: 'main',
+      history: 'history',
+      award: 'award',
+      rules: 'rules',
+      game: 'game',
     }
+    this.screens = Object.keys(this.screen);
+    this.element = {
+      mainIntroMessage: document.querySelector('.intro__message'),
+      gameInput: document.querySelector('.form__field'),
+    };
+    this.initHandler = {
+      [this.screen.main]: this.initMainScreen.bind(this),
+      [this.screen.history]: this.initHistoryScreen.bind(this),
+      [this.screen.game]: this.initGameScreen.bind(this),
+    };
+    this.destoryHandler = {
+      [this.screen.main]: this.destroyMainScreen.bind(this),
+      [this.screen.history]: this.destroyHistoryScreen.bind(this),
+      [this.screen.game]: this.destroyGameScreen.bind(this),
+    };
+  }
 
-    case HISTORY: {
-      initSlideAnimation();
+  /**
+   * @param {Number} activeScreen
+   */
+  init(activeScreen) {
+    const handler = this.initHandler[this.screens[activeScreen]];
 
-      break;
-    }
+    handler && handler();
+  }
 
-    case GAME: {
-      requestAnimationFrame(() => {
-        gameInput.classList.add('active');
-      });
+  /**
+   * @param {Number} activeScreen
+   */
+  destroy(activeScreen) {
+    const handler = this.destoryHandler[this.screens[activeScreen]];
 
-      break;
-    }
+    handler && handler();
+  }
 
-    default: {
-      break;
-    }
+  /**
+   * Главная
+   */
+  initMainScreen() {
+    requestAnimationFrame(() => {
+      this.element.mainIntroMessage.classList.add('active');
+    });
+  }
+
+  destroyMainScreen() {
+    this.element.mainIntroMessage.classList.remove('active');
+  }
+
+  /**
+   * История
+   */
+  initHistoryScreen() {
+    historySliderAnimation.init();
+  }
+
+  destroyHistoryScreen() {
+    historySliderAnimation.destroy();
+  }
+
+  /**
+   * Игра
+   */
+  initGameScreen() {
+    requestAnimationFrame(() => {
+      this.element.gameInput.classList.add('active');
+    });
+  }
+
+  destroyGameScreen() {
+    this.element.gameInput.classList.remove('active');
   }
 }
-
-/**
- * @param {Number} activeScreen
- */
-export const destroyPageAnimation = (activeScreen) => {
-  switch (screens[activeScreen]) {
-    case MAIN: {
-      introMessage.classList.remove('active');
-
-      break;
-    }
-
-    case HISTORY: {
-      destroySlideAnimation();
-
-      break;
-    }
-
-    case GAME: {
-      gameInput.classList.remove('active');
-
-      break;
-    }
-
-    default: {
-      break;
-    }
-  }
-};

@@ -1,5 +1,5 @@
 import Swiper from "swiper";
-import { initSlideAnimation, destroySlideAnimation } from "./historySliderAnimation";
+import historySliderAnimation from "./historySliderAnimation";
 
 export default () => {
   let storySlider;
@@ -62,8 +62,8 @@ export default () => {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg")`;
             }
           },
-          transitionStart: destroySlideAnimation,
-          transitionEnd: initSlideAnimation,
+          transitionStart: historySliderAnimation.destroy,
+          transitionEnd: historySliderAnimation.init,
           resize: () => {
             storySlider.update();
           }
