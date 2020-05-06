@@ -95,6 +95,14 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+  opacity: 0;
+  transform: translateX(25%);
+  transition: opacity 1s 0.3s, transform 0.2s 0.3s;
+
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
