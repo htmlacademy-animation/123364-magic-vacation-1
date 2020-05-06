@@ -1,9 +1,13 @@
 import { initSlideAnimation, destroySlideAnimation } from "./historySliderAnimation";
 
 const introMessage = document.querySelector('.intro__message');
+const gameInput = document.querySelector('.form__field');
 const MAIN = 'main';
 const HISTORY = 'history';
-const screens = [MAIN, HISTORY];
+const AWARD = 'award';
+const RULES = 'rules';
+const GAME = 'game';
+const screens = [MAIN, HISTORY, AWARD, RULES, GAME];
 
 /**
  * @param {Number} activeScreen
@@ -20,6 +24,14 @@ export const initPageAnimation = (activeScreen) => {
 
     case HISTORY: {
       initSlideAnimation();
+
+      break;
+    }
+
+    case GAME: {
+      requestAnimationFrame(() => {
+        gameInput.classList.add('active');
+      });
 
       break;
     }
@@ -43,6 +55,12 @@ export const destroyPageAnimation = (activeScreen) => {
 
     case HISTORY: {
       destroySlideAnimation();
+
+      break;
+    }
+
+    case GAME: {
+      gameInput.classList.remove('active');
 
       break;
     }

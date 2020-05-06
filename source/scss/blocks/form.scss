@@ -63,6 +63,12 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
+  width: 0;
+  transition: width 0.4s;
+
+  &.active {
+    width: 100%;
+  }
 
   &:focus {
     border: 1px solid $c-purple;
