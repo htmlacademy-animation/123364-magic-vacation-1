@@ -3,16 +3,16 @@ import historySliderAnimation from "./historySliderAnimation";
 export default class PageAnimation {
   constructor() {
     this.screen = {
-      main: 'main',
-      history: 'history',
-      award: 'award',
-      rules: 'rules',
-      game: 'game',
-    }
+      main: `main`,
+      history: `history`,
+      award: `award`,
+      rules: `rules`,
+      game: `game`,
+    };
     this.screens = Object.keys(this.screen);
     this.element = {
-      mainIntroMessage: document.querySelector('.intro__message'),
-      gameInput: document.querySelector('.form__field'),
+      mainIntroMessage: document.querySelector(`.intro__message`),
+      gameInput: document.querySelector(`.form__field`),
     };
     this.initHandler = {
       [this.screen.main]: this.initMainScreen.bind(this),
@@ -32,7 +32,9 @@ export default class PageAnimation {
   init(activeScreen) {
     const handler = this.initHandler[this.screens[activeScreen]];
 
-    handler && handler();
+    if (handler) {
+      handler();
+    }
   }
 
   /**
@@ -41,7 +43,9 @@ export default class PageAnimation {
   destroy(activeScreen) {
     const handler = this.destoryHandler[this.screens[activeScreen]];
 
-    handler && handler();
+    if (handler) {
+      handler();
+    }
   }
 
   /**
@@ -49,12 +53,12 @@ export default class PageAnimation {
    */
   initMainScreen() {
     requestAnimationFrame(() => {
-      this.element.mainIntroMessage.classList.add('active');
+      this.element.mainIntroMessage.classList.add(`active`);
     });
   }
 
   destroyMainScreen() {
-    this.element.mainIntroMessage.classList.remove('active');
+    this.element.mainIntroMessage.classList.remove(`active`);
   }
 
   /**
@@ -73,11 +77,11 @@ export default class PageAnimation {
    */
   initGameScreen() {
     requestAnimationFrame(() => {
-      this.element.gameInput.classList.add('active');
+      this.element.gameInput.classList.add(`active`);
     });
   }
 
   destroyGameScreen() {
-    this.element.gameInput.classList.remove('active');
+    this.element.gameInput.classList.remove(`active`);
   }
 }
