@@ -95,7 +95,7 @@
   line-height: 1.27;
   transform: translateY(50%);
   opacity: 0;
-  transition: transform 0.2s 0.2s, opacity 0.2s 0.2s;
+  transition: transform 0.35s ease 0.2s, opacity 0.35s ease 0.2s;
 
   &.active {
     transform: translateY(0);
