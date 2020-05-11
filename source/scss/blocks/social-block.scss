@@ -5,6 +5,11 @@
     .social-block__list {
       opacity: 1;
       pointer-events: auto;
+
+      .social-block__link {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 }
@@ -35,6 +40,7 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+    transition: width 0.35s, height 0.35s, color 0.35s;
   }
 
   svg {
@@ -65,6 +71,11 @@
     & + .social-block__list {
       opacity: 1;
       pointer-events: auto;
+
+      .social-block__link {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 
@@ -168,6 +179,11 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  opacity: 0;
+  transform: translateY(50%);
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+  transition-property: border, background-color, color, opacity, transform;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -175,6 +191,8 @@
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
+    transform: translateY(0);
+    opacity: 1;
     color: $c-light;
     background-color: $c-dark;
   }
@@ -219,6 +237,9 @@
   }
 
   &--insta {
+    // border, background-color, color, opacity, transform
+    transition-delay: 0s, 0s, 0s, 0.1s, 0.1s;
+
     svg {
       width: 1.5rem;
       height: 1.5rem;
@@ -231,6 +252,9 @@
   }
 
   &--vk {
+    // border, background-color, color, opacity, transform
+    transition-delay: 0s, 0s, 0s, 0.35s, 0.35s;
+
     svg {
       width: 1.7rem;
       height: 1rem;
