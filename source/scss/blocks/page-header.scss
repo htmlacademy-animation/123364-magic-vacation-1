@@ -35,6 +35,11 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  opacity: 0;
+  transform: translateX(-25%);
+  transition-duration: 0.8s;
+  transition-timing-function: var(--animation);
+  transition-property: transform, opacity;
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -130,6 +135,8 @@
 .page-header__nav {
   display: flex;
   align-items: center;
+  opacity: 0;
+  transition: opacity 1s var(--animation);
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -305,12 +312,6 @@
       }
     }
 
-    &.active {
-      &::after {
-        transform: scaleX(1);
-      }
-    }
-
     &:hover,
     &:focus {
       color: $c-purple;
@@ -339,5 +340,21 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+.page-loaded {
+  .page-header__logo {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .page-header__nav {
+    opacity: 1;
+
+    .active::after {
+      transform: scaleX(1);
+      transform-origin: left center;
+    }
   }
 }
