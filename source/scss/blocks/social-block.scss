@@ -1,5 +1,7 @@
 .social-block {
   position: relative;
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(.54,1.12,.85,1.13);
 
   &:hover {
     .social-block__list {
@@ -264,5 +266,11 @@
         height: 10px;
       }
     }
+  }
+}
+
+.page-loaded {
+  .social-block {
+    transform: scale(1);
   }
 }
