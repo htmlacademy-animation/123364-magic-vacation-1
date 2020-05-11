@@ -10452,6 +10452,55 @@ __webpack_require__.r(__webpack_exports__);
         document.body.classList.remove(`menu-opened`);
       }
     });
+
+    const removeAllClasses = (el) => {
+      el.classList.remove(`js-menu-link--enter`);
+      el.classList.remove(`js-menu-link--enter-active`);
+      el.classList.remove(`js-menu-link--enter-done`);
+      el.classList.remove(`js-menu-link--exit`);
+      el.classList.remove(`js-menu-link--exit-active`);
+      el.classList.remove(`js-menu-link--exit-done`);
+    };
+
+    const handleEnterTransitionEnd = () => {
+      menuLinks[i].classList.add(`js-menu-link--enter-done`);
+      menuLinks[i].classList.remove(`js-menu-link--enter`);
+      menuLinks[i].classList.remove(`js-menu-link--enter-active`);
+      menuLinks[i].removeEventListener(`transitionend`, handleEnterTransitionEnd);
+    };
+
+    const handleExitTransitionEnd = () => {
+      menuLinks[i].classList.remove(`js-menu-link--exit`);
+      menuLinks[i].classList.remove(`js-menu-link--exit-active`);
+      menuLinks[i].removeEventListener(`transitionend`, handleEnterTransitionEnd);
+    };
+
+    const handleEnter = () => {
+      if (menuLinks[i].classList.contains(`active`)) {
+        return;
+      }
+
+      menuLinks[i].addEventListener(`transitionend`, handleEnterTransitionEnd);
+      removeAllClasses(menuLinks[i]);
+      menuLinks[i].classList.add(`js-menu-link--enter`);
+      menuLinks[i].classList.add(`js-menu-link--enter-active`);
+    };
+
+    const handleExit = () => {
+      if (menuLinks[i].classList.contains(`active`)) {
+        return;
+      }
+
+      menuLinks[i].addEventListener(`transitionend`, handleExitTransitionEnd);
+      removeAllClasses(menuLinks[i]);
+      menuLinks[i].classList.add(`js-menu-link--exit`);
+      menuLinks[i].classList.add(`js-menu-link--exit-active`);
+    };
+
+    menuLinks[i].addEventListener(`mouseover`, handleEnter);
+    menuLinks[i].addEventListener(`focus`, handleEnter);
+    menuLinks[i].addEventListener(`mouseleave`, handleExit);
+    menuLinks[i].addEventListener(`blur`, handleExit);
   }
 });
 
@@ -10669,6 +10718,8 @@ __webpack_require__.r(__webpack_exports__);
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg"), linear-gradient(180deg, rgba(45, 39, 63, 0) 0%, #2F2A42 16.85%)`;
             }
           },
+          transitionStart: _historySliderAnimation__WEBPACK_IMPORTED_MODULE_1__["default"].destroy,
+          transitionEnd: _historySliderAnimation__WEBPACK_IMPORTED_MODULE_1__["default"].init,
           resize: () => {
             storySlider.update();
           }

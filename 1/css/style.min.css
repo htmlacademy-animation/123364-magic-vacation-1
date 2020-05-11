@@ -1543,7 +1543,7 @@ img {
   line-height: 1.27;
   transform: translateY(50%);
   opacity: 0;
-  transition: transform 0.2s 0.2s, opacity 0.2s 0.2s; }
+  transition: transform 0.35s ease 0.2s, opacity 0.35s ease 0.2s; }
   .intro__message.active {
     transform: translateY(0);
     opacity: 1; }
@@ -1808,22 +1808,38 @@ img {
         margin: 0 0 1.5rem; }
         .page-header__menu li:last-child {
           margin-bottom: 0; } }
+  .page-header__menu .js-menu-link {
+    transition: color 0.2s linear; }
+    .page-header__menu .js-menu-link::after {
+      transform: scaleX(0); }
+    .page-header__menu .js-menu-link--enter {
+      transition: color 0.35s linear; }
+      .page-header__menu .js-menu-link--enter::after {
+        transition: transform 0.35s linear;
+        transform-origin: left center; }
+      .page-header__menu .js-menu-link--enter-active::after, .page-header__menu .js-menu-link--enter-done::after {
+        transform: scaleX(1); }
+    .page-header__menu .js-menu-link--exit {
+      transition: color 0.2s linear; }
+      .page-header__menu .js-menu-link--exit::after {
+        transition: transform 0.2s linear;
+        transform-origin: right center; }
+      .page-header__menu .js-menu-link--exit-active::after, .page-header__menu .js-menu-link--exit-done::after {
+        transform: scaleX(0); }
   .page-header__menu a {
     position: relative;
     display: block;
     color: inherit;
-    padding: 0 0.5em 0.5em;
-    transition: color 0.2s linear; }
+    padding: 0 0.5em 0.5em; }
     .page-header__menu a::after {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 0;
+      width: 100%;
       height: 2px;
       background-color: #ffffff;
       display: block;
-      left: 0;
-      transition: width 0.2s linear; }
+      left: 0; }
       @media (min-width: 2000px) {
         .page-header__menu a::after {
           left: -5px;
@@ -1839,12 +1855,11 @@ img {
           right: 0;
           background-color: #5f458c; } }
     .page-header__menu a.active::after {
-      width: 100%; }
+      transform: scaleX(1); }
     .page-header__menu a:hover, .page-header__menu a:focus {
       color: #a67ee5;
       outline: none; }
       .page-header__menu a:hover::after, .page-header__menu a:focus::after {
-        width: 100%;
         opacity: 1;
         background-color: #a67ee5; }
 
@@ -3113,7 +3128,7 @@ img {
     background-color: #ffffff;
     border: 2px solid #ffffff;
     z-index: -1;
-    transition: width 0.2s, height 0.2s, color 0.2s; }
+    transition: width 0.35s, height 0.35s, color 0.35s; }
   .social-block__toggler svg {
     position: absolute;
     top: 50%;
@@ -3220,7 +3235,10 @@ img {
   border: 2px solid transparent;
   border-radius: 50%;
   opacity: 0;
-  transform: translateY(50%); }
+  transform: translateY(50%);
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+  transition-property: border, background-color, color, opacity, transform; }
   @media (min-width: 2000px) {
     .social-block__link {
       width: 40px;
@@ -3251,17 +3269,15 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
-  .social-block__link--fb {
-    transition: opacity 0.3s, transform 0.1s; }
-    .social-block__link--fb svg {
-      width: 0.8rem;
-      height: 1.7rem; }
-      @media (min-width: 2000px) {
-        .social-block__link--fb svg {
-          width: 8px;
-          height: 17px; } }
+  .social-block__link--fb svg {
+    width: 0.8rem;
+    height: 1.7rem; }
+    @media (min-width: 2000px) {
+      .social-block__link--fb svg {
+        width: 8px;
+        height: 17px; } }
   .social-block__link--insta {
-    transition: opacity 0.3s 0.1s, transform 0.1s 0.1s; }
+    transition-delay: 0s, 0s, 0s, 0.1s, 0.1s; }
     .social-block__link--insta svg {
       width: 1.5rem;
       height: 1.5rem; }
@@ -3270,7 +3286,7 @@ img {
           width: 15px;
           height: 15px; } }
   .social-block__link--vk {
-    transition: opacity 0.3s 0.2s, transform 0.1s 0.2s; }
+    transition-delay: 0s, 0s, 0s, 0.35s, 0.35s; }
     .social-block__link--vk svg {
       width: 1.7rem;
       height: 1rem; }
