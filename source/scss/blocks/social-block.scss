@@ -40,7 +40,7 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
-    transition: width 0.2s, height 0.2s, color 0.2s;
+    transition: width 0.35s, height 0.35s, color 0.35s;
   }
 
   svg {
@@ -181,6 +181,9 @@
   border-radius: 50%;
   opacity: 0;
   transform: translateY(50%);
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+  transition-property: border, background-color, color, opacity, transform;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -222,8 +225,6 @@
   }
 
   &--fb {
-    transition: opacity 0.3s, transform 0.1s;
-
     svg {
       width: 0.8rem;
       height: 1.7rem;
@@ -236,7 +237,8 @@
   }
 
   &--insta {
-    transition: opacity 0.3s 0.1s, transform 0.1s 0.1s;
+    // border, background-color, color, opacity, transform
+    transition-delay: 0s, 0s, 0s, 0.1s, 0.1s;
 
     svg {
       width: 1.5rem;
@@ -250,7 +252,8 @@
   }
 
   &--vk {
-    transition: opacity 0.3s 0.2s, transform 0.1s 0.2s;
+    // border, background-color, color, opacity, transform
+    transition-delay: 0s, 0s, 0s, 0.35s, 0.35s;
 
     svg {
       width: 1.7rem;
