@@ -28,6 +28,8 @@ export default () => {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg"), linear-gradient(180deg, rgba(45, 39, 63, 0) 0%, #2F2A42 16.85%)`;
             }
           },
+          transitionStart: historySliderAnimation.destroy,
+          transitionEnd: historySliderAnimation.init,
           resize: () => {
             storySlider.update();
           }
