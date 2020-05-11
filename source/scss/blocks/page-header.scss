@@ -243,51 +243,12 @@
     }
   }
 
-  .js-menu-link {
-    transition: color 0.2s linear;
-
-    &::after {
-      transform: scaleX(0);
-    }
-
-    &--enter {
-      transition: color 0.35s linear;
-
-      &::after {
-        transition: transform 0.35s linear;
-        transform-origin: left center;
-      }
-
-      &-active,
-      &-done {
-        &::after {
-          transform: scaleX(1);
-        }
-      }
-    }
-
-    &--exit {
-      transition: color 0.2s linear;
-
-      &::after {
-        transition: transform 0.2s linear;
-        transform-origin: right center;
-      }
-
-      &-active,
-      &-done {
-        &::after {
-          transform: scaleX(0);
-        }
-      }
-    }
-  }
-
   a {
     position: relative;
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
+    transition: color 0.35s linear;
 
     &::after {
       content: "";
@@ -298,6 +259,9 @@
       background-color: $c-light;
       display: block;
       left: 0;
+      transform: scaleX(0);
+      transition: transform 0.35s linear;
+      transform-origin: right center;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -318,8 +282,9 @@
       outline: none;
 
       &::after {
-        opacity: 1;
+        transform-origin: left center;
         background-color: $c-purple;
+        transform: scaleX(1);
       }
     }
   }
