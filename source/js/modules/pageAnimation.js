@@ -35,6 +35,10 @@ export default class PageAnimation {
     if (handler) {
       handler();
     }
+
+    const isAwardScreen = this.screens[activeScreen] === this.screen.award;
+
+    document.documentElement.style.setProperty(`--screen-overlay`, isAwardScreen ? 1 : 0);
   }
 
   /**
