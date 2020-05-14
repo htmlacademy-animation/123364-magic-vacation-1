@@ -13,16 +13,20 @@ export default class PageAnimation {
     this.element = {
       mainIntroMessage: document.querySelector(`.intro__message`),
       gameInput: document.querySelector(`.form__field`),
+      rulesLastListItem: document.querySelector(`.rules__item:last-child`),
+      rulesButton: document.querySelector(`.rules__link`),
     };
     this.initHandler = {
       [this.screen.main]: this.initMainScreen.bind(this),
       [this.screen.history]: this.initHistoryScreen.bind(this),
       [this.screen.game]: this.initGameScreen.bind(this),
+      [this.screen.rules]: this.initRulesScreen.bind(this),
     };
     this.destoryHandler = {
       [this.screen.main]: this.destroyMainScreen.bind(this),
       [this.screen.history]: this.destroyHistoryScreen.bind(this),
       [this.screen.game]: this.destroyGameScreen.bind(this),
+      [this.screen.rules]: this.destroyRulesScreen.bind(this),
     };
   }
 
@@ -87,5 +91,22 @@ export default class PageAnimation {
 
   destroyGameScreen() {
     this.element.gameInput.classList.remove(`active`);
+  }
+
+  setRulesButtonAnimation() {
+    this.element.rulesButton.classList.add(`animation`);
+  }
+
+  /**
+   * Правила
+   */
+  initRulesScreen() {
+    requestAnimationFrame(() => {
+      this.element.rulesLastListItem.addEventListener(`animationend`, this.setRulesButtonAnimation.bind(this));
+    });
+  }
+
+  destroyRulesScreen() {
+    this.element.rulesLastListItem.removeEventListener(`animationend`, this.setRulesButtonAnimation.bind(this));
   }
 }

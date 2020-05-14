@@ -377,6 +377,38 @@
 
 .screen--rules {
   background-color: $c-dark;
+
+  &.active {
+    .rules__lead {
+      animation-name: fadeIn;
+      animation-duration: 1s;
+      animation-fill-mode: both;
+      animation-iteration-count: 1;
+      animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    @for $i from 1 through 4 {
+      .rules__item:nth-child(#{$i}) {
+        &::before {
+          animation-name: itemScale;
+          animation-duration: 0.75s;
+          animation-fill-mode: both;
+          animation-iteration-count: 1;
+          animation-delay: $i / 4 + 0.3s;
+          animation-timing-function: cubic-bezier(0.43, 0.38, 0.62, 1.29);
+        }
+
+        p {
+          animation-name: itemTextTranslate;
+          animation-duration: 0.5s;
+          animation-fill-mode: both;
+          animation-iteration-count: 1;
+          animation-delay: $i / 4 + 0.55s;
+          animation-timing-function: ease-out;
+        }
+      }
+    }
+  }
 }
 
 .page-loaded {
