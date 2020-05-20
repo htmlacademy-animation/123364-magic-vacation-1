@@ -1,4 +1,5 @@
 import historySliderAnimation from "./historySliderAnimation";
+import { breakWord } from "./titleAnimation";
 
 export default class PageAnimation {
   constructor() {
@@ -62,6 +63,9 @@ export default class PageAnimation {
   initMainScreen() {
     requestAnimationFrame(() => {
       this.element.mainIntroMessage.classList.add(`active`);
+
+      breakWord(document.querySelector(`.intro__title`));
+      breakWord(document.querySelector(`.intro__date`));
     });
   }
 
