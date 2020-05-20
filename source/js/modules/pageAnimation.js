@@ -1,5 +1,5 @@
 import historySliderAnimation from "./historySliderAnimation";
-import { breakWord } from "./titleAnimation";
+import {breakWord} from "./titleAnimation";
 
 export default class PageAnimation {
   constructor() {
