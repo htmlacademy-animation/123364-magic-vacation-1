@@ -227,6 +227,14 @@
     opacity: 0.5;
     pointer-events: none;
   }
+
+  &--next {
+    transform: translateX(100px);
+  }
+
+  &--prev {
+    transform: translateX(-100px);
+  }
 }
 
 .slider__pagination.swiper-pagination {
