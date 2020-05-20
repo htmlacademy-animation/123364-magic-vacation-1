@@ -320,6 +320,21 @@
     background-size: auto calc(100vh - 13.8rem), 100% 25rem;
     background-position: top center, bottom center;
   }
+
+  &.active .slider__control--prev,
+  &.active .slider__control--next {
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0, 0, 0.6, 1.25);
+    animation-fill-mode: forwards;
+  }
+
+  &.active .slider__control--next {
+    animation-name: fadeInRollLeft;
+  }
+
+  &.active .slider__control--prev {
+    animation-name: fadeInRollRight;
+  }
 }
 
 .screen--prizes {
